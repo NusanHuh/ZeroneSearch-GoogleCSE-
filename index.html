@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Search Button</title>
+    <style>
+        .custom-search-container {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .custom-search-container input.gsc-input {
+            width: calc(100% - 60px); /* Adjust according to the button size */
+            padding-right: 10px;
+            box-sizing: border-box;
+        }
+
+        .custom-search-container button.gsc-search-button {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            width: 60px; /* Adjust according to the button size */
+            background: url('none') no-repeat center center;
+            background-size: contain;
+            border: none;
+            cursor: pointer;
+        }
+
+        .custom-search-container button.gsc-search-button:hover {
+            background-color: transparent; /* Adjust if you want a different hover effect */
+        }
+    </style>
+</head>
+<body>
+
+<div class="gcse-search"></div>
+
+<script async src="https://cse.google.com/cse.js?cx=a72e564a9a00341f3"></script>
+<script>
+    window.__gcse = {
+        callback: function() {
+            var searchBox = document.querySelector('.gsc-input');
+            var searchButton = document.querySelector('.gsc-search-button');
+            
+            if (searchBox && searchButton) {
+                // Wrap the search box and button in a custom container
+                var container = document.createElement('div');
+                container.className = 'custom-search-container';
+                searchBox.parentNode.insertBefore(container, searchBox);
+                container.appendChild(searchBox);
+                container.appendChild(searchButton);
+            }
+        }
+    };
+</script>
+
+</body>
+</html>
